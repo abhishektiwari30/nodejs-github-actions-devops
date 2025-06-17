@@ -1,0 +1,30 @@
+name: CI
+
+on:
+ push:
+   branches: [main]
+ pull_request:
+
+jobs:
+  lint-test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npx eslint src/
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build Docker image
+        run: docker build -t nodejs-devops-app .
