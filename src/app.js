@@ -1,4 +1,5 @@
 # add status endpoint
+# testing lint setup
 const express = require('express');
 const app = express();
 const port = 3000;
